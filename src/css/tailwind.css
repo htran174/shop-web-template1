@@ -2,4 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* font faces will be added into a separate fonts.css we self-host */
+/* Base from semantic tokens */
+@layer base {
+  :root { --radius: 6px; } /* fallback */
+  html { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+  body { background: var(--color-page-bg); color: var(--color-body); }
+  h1,h2,h3,h4 { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; color: var(--color-title); }
+  a { color: var(--color-link); }
+}
+
+/* Components built on tokens */
+@layer components {
+  .card { background: var(--color-card-bg); border:1px solid var(--color-border); border-radius: var(--radius); }
+
+  .btn { @apply inline-flex items-center justify-center px-5 py-3 transition;
+         border:1px solid var(--color-border); border-radius: var(--radius); }
+
+  .btn-gold    { background: var(--color-cta-bg);    color: var(--color-cta-fg); }
+  .btn-white   { background: var(--color-cta-alt-bg); color: var(--color-cta-alt-fg); }
+  .btn-outline { background: transparent; color: var(--color-body); }
+
+  .muted { color: var(--color-muted); }
+}
+
+/* Motion */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-init { opacity:0; transform: translateY(8px); }
+  .reveal-in   { opacity:1; transform:none; transition: opacity .4s ease, transform .4s ease; }
+}
+@keyframes mildPulse { 0%,97%,100%{transform:none} 98.5%{transform:translateY(-2px)} }
+.pulse-rare { animation: mildPulse 15s infinite; }
+
+@layer components {
+  /* Footer scope */
+  .footer { color: #d8d8d8; background-color: #111; }
+
+  /* Make footer links neutral (override theme's gold) */
+  .footer a { color: #d8d8d8 !important; }
+  .footer a:hover { color: #ffffff !important; }
+
+  /* Sizes & rhythm (smaller, calmer) */
+  .footer .brand-line { font-size: 0.95rem; line-height: 1.6; }
+  .footer .hours-line { font-size: 0.85rem; line-height: 1.6; color: rgba(255,255,255,.7); }
+  .footer .legal-line { font-size: 0.8rem; line-height: 1.4; color: rgba(255,255,255,.5); }
+
+  /* Socials: subtle by default, brighter on hover */
+  .footer .social-link { @apply inline-flex items-center gap-2 transition; color: rgba(255,255,255,.65); }
+  .footer .social-link:hover { color: rgba(255,255,255,.9); }
+  .footer .social-icon { width: 18px; height: 18px; opacity: .7; transition: opacity .25s ease; }
+  .footer .social-link:hover .social-icon { opacity: 1; }
+}
+
+
+

@@ -1,0 +1,24 @@
+:root{
+  /* Core palette */
+  --bg: #0B0B0C;          /* page background */
+  --surface: #121214;     /* cards/header */
+  --white: #F5F4EF;       /* warm white */
+  --muted: #B3B0A6;       /* secondary text */
+  --gold: #D6C37A;        /* soft gold */
+  --radius: 6px;
+
+  /* Semantic roles used by the site */
+  --color-page-bg: var(--bg);
+  --color-card-bg: var(--surface);
+  --color-title: var(--white);        /* headings = white */
+  --color-body: var(--white);         /* body text = white */
+  --color-muted: var(--muted);        /* secondary = muted */
+  --color-link: var(--gold);          /* links = gold */
+  --color-border: rgba(255,255,255,.10);
+
+  /* Buttons */
+  --color-cta-bg: var(--gold);        /* primary button = gold */
+  --color-cta-fg: #0B0B0C;            /* text on gold */
+  --color-cta-alt-bg: var(--white);   /* alt = white */
+  --color-cta-alt-fg: #0B0B0C;        /* text on white */
+}
