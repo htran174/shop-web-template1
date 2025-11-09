@@ -38,7 +38,7 @@
         </p>
 
         <div class="mt-8 flex flex-wrap gap-3" data-reveal>
-          <a class="btn btn-gold" href="/services.html">Services</a>
+          <a class="btn btn-gold" href="/#services">Services</a>
           <a class="btn btn-gold" href="/booking.html" data-booking>Book</a>
         </div>
       </div>
@@ -53,25 +53,36 @@
   </section>
 
   <!-- Services highlight -->
-  <section class="px-6 md:px-10 py-16 md:py-20">
-    <h2 class="text-3xl md:text-4xl font-semibold mb-8" data-reveal>Our Services</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="p-6 card" data-reveal>
-        <h3 class="text-2xl font-semibold mb-2">Acrylic</h3>
-        <p class="muted">Clean shapes, long-lasting shine.</p>
-      </div>
-      <div class="p-6 card" data-reveal>
-        <h3 class="text-2xl font-semibold mb-2">Gel Manicure</h3>
-        <p class="muted">High-gloss color, gentle removal.</p>
-      </div>
-      <div class="p-6 card" data-reveal>
-        <h3 class="text-2xl font-semibold mb-2">Pedicure</h3>
-        <p class="muted">Relaxed care, sanitized tools.</p>
-      </div>
-    </div>
-  </section>
+  <section id="services" class="services-band anchor-offset full-bleed" data-reveal>
+  <h2 class="services-heading">Our Services</h2>
 
+  <div class="mt-10 grid gap-8 md:grid-cols-3 max-w-6xl mx-auto px-6 md:px-10">
+    <!-- Acrylic -->
+    <div class="service-card" data-reveal>
+      <a class="stretched-link" href="/services.html#acrylic" aria-label="Open Acrylic menu"></a>
+      <h3 class="service-title">Acrylic</h3>
+      <p class="service-desc">Clean structure. Long-lasting shine.</p>
+      <a href="/services.html#acrylic" class="btn-service">View menu</a>
+    </div>
+
+    <!-- Gel Manicure -->
+    <div class="service-card" data-reveal>
+      <a class="stretched-link" href="/services.html#gel" aria-label="Open Acrylic menu"></a>
+      <h3 class="service-title">Gel Manicure</h3>
+      <p class="service-desc">High-gloss color. Gentle removal.</p>
+      <a href="/services.html#gel" class="btn-service">View menu</a>
+    </div>
+
+    <!-- Pedicure -->
+    <div class="service-card" data-reveal>
+      <a class="stretched-link" href="/services.html#pedicure" aria-label="Open Acrylic menu"></a>
+      <h3 class="service-title">Pedicure</h3>
+      <p class="service-desc">Unhurried care. Sanitized tools.</p>
+      <a href="/services.html#pedicure" class="btn-service">View menu</a>
+    </div>
+  </div>
 </section>
+
 
   <!-- Load shared footer -->
 <div x-data x-init="fetch('/partials/footer.html')
