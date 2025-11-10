@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: [
+    "./src/**/*.{html,js}",
+    "./partials/**/*.html",
+    "./templates/**/*.html",
+    "./*.html"
+  ],
   theme: {
     extend: {
       colors: {
@@ -10,5 +15,5 @@ module.exports = {
       borderRadius: { sm: "6px" }
     }
   },
-  plugins: [require('@tailwindcss/typography')]
-}
+  plugins: [require("@tailwindcss/typography")]
+};
