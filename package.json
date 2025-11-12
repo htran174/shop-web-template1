@@ -3,23 +3,23 @@
   "version": "1.0.0",
   "type": "commonjs",
   "scripts": {
-  "dev:css": "tailwindcss -i ./src/css/tailwind.css -o ./dist/assets/app.css --watch",
-  "build:css": "tailwindcss -i ./src/css/tailwind.css -o ./dist/assets/app.css --minify",
-  "build:fonts": "mkdir -p dist/assets/fonts dist/assets/icons && cp -R src/assets/fonts/* dist/assets/fonts/ 2>/dev/null || true && cp -R src/assets/icons/* dist/assets/icons/ 2>/dev/null || true",
-  "build:js": "mkdir -p dist/assets/js && cp node_modules/alpinejs/dist/cdn.min.js dist/assets/alpine.min.js && cp -R src/js/* dist/assets/js/",
-  "build:images": "mkdir -p dist/assets/images && cp -R src/assets/images/* dist/assets/images/ 2>/dev/null || true",
-  "build:html": "cp -R src/*.html dist/",
-  "build:themes": "mkdir -p dist/assets/themes && cp -R src/css/themes/* dist/assets/themes/",
-  "build:partials": "mkdir -p dist/partials && cp -R src/partials/* dist/partials/",
-  "copy:misc": "cp -f src/favicon.ico dist/ 2>/dev/null || true",
-  "build": "npm run build:css && npm run build:fonts && npm run build:js && npm run build:images && npm run build:html && npm run build:themes && npm run build:partials && npm run copy:misc",
-  "preview": "npx serve dist -l 5173"
-},
-
+    "dev:css": "tailwindcss -i ./src/css/tailwind.css -o ./dist/assets/app.css --watch",
+    "build:css": "tailwindcss -i ./src/css/tailwind.css -o ./dist/assets/app.css --minify",
+    "build:fonts": "shx mkdir -p dist/assets/fonts dist/assets/icons && shx cp -r src/assets/fonts/* dist/assets/fonts || shx echo no-fonts && shx cp -r src/assets/icons/* dist/assets/icons || shx echo no-icons",
+    "build:js": "shx mkdir -p dist/assets/js && shx cp node_modules/alpinejs/dist/cdn.min.js dist/assets/alpine.min.js && shx cp -r src/js/* dist/assets/js || shx echo no-js-src",
+    "build:images": "shx mkdir -p dist/assets/images && shx cp -r src/assets/images/* dist/assets/images || shx echo no-images",
+    "build:html": "shx mkdir -p dist && shx cp -r src/*.html dist/",
+    "build:themes": "shx mkdir -p dist/assets/themes && shx cp -r src/css/themes/* dist/assets/themes || shx echo no-themes",
+    "build:partials": "shx mkdir -p dist/partials && shx cp -r src/partials/* dist/partials || shx echo no-partials",
+    "copy:misc": "shx cp -f src/favicon.ico dist/ || shx echo no-favicon",
+    "build": "npm run build:css && npm run build:fonts && npm run build:js && npm run build:images && npm run build:html && npm run build:themes && npm run build:partials && npm run copy:misc",
+    "preview": "npx serve dist -l 5173"
+  },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
+    "shx": "^0.4.0",
     "tailwindcss": "^3.4.18"
   },
   "dependencies": {
