@@ -41,12 +41,46 @@
 
     .sig-divider { height:1px; background:var(--services-gold-soft); opacity:.25; }
 
+     /* ===== MOBILE ===== */
     @media (max-width:640px){
-      .row { flex-wrap:wrap; }
-      .leaders { display:none; }
-      .price { margin-left:0; width:100%; text-align:left; opacity:.9; }
-      .desc { margin-left:0; }
+      .row {
+        display:block;
+        gap:0;
+      }
+
+      .row .num {
+        display:none;
+      }
+
+      .row .name {
+        display:inline;
+        font-size:1rem;
+      }
+
+      .row .name::after {
+        content: " —";
+      }
+
+      .leaders {
+        display:none;
+      }
+
+      .row .price {
+        display:inline;
+        margin-left:.35rem;
+        width:auto;
+        text-align:left;
+        white-space:nowrap;
+        opacity:.95;
+        font-weight:500;
+      }
+
+      .desc {
+        margin-left:0;
+        margin-top:.45rem;
+      }
     }
+
   </style>
 </head>
 

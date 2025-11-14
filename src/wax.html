@@ -44,11 +44,67 @@
     .addons { margin:.4rem 0 0 calc(1.75ch + .25rem); padding-left:0; list-style:none; }
     .addon-item .name, .addon-item .price { color:#cfcfcf; font-weight:500; }
     
+     /* ===== MOBILE ===== */
     @media (max-width:640px){
-      .row { flex-wrap:wrap; }
-      .leaders { display:none; }
-      .price { margin-left:0; width:100%; text-align:left; opacity:.9; }
-      .desc { margin-left:0; }
+      /* Header row: "Name — $Price" on one line, no numbers */
+      .row {
+        display:block;
+        gap:0;
+      }
+
+      .row .num {
+        display:none;
+      }
+
+      .row .name {
+        display:inline;
+        font-size:1rem;
+      }
+
+      .row .name::after {
+        content: " —";
+      }
+
+      .leaders {
+        display:none;
+      }
+
+      .row .price {
+        display:inline;
+        margin-left:.35rem;
+        width:auto;
+        text-align:left;
+        white-space:nowrap;
+        opacity:.95;
+        font-weight:500;
+        color: var(#cfcfcf);
+      }
+
+      /* Description sits just under the title line */
+      .desc {
+        margin-left:0;
+        margin-top:.45rem;
+      }
+
+      /* Add-ons: bullet list look */
+      .addons {
+        margin-left:0;
+        margin-top:.5rem;
+      }
+
+      .addon-item {
+        position:relative;
+        padding-left:1.1rem;
+      }
+
+      .addon-item::before {
+        content:"•";
+        position:absolute;
+        left:0;
+        top:.15rem;
+        font-size:.9rem;
+        color:var(--white);
+      }
     }
   </style>
 </head>
