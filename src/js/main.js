@@ -16,22 +16,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const elements = document.querySelectorAll("[data-reveal], .reveal");
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
+  // --- iOS / Safari blank-screen fix ---
+  const ua = window.navigator.userAgent || "";
+  const isIOS =
+    /iP(hone|ad|od)/.test(ua) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
-      const el = entry.target;
-      const delay = parseFloat(el.getAttribute("data-reveal-delay") || "0");
+  // Helper: immediately show all reveal elements
+  const revealAllNow = () => {
+    elements.forEach((el) => el.classList.add("reveal--in"));
+  };
 
-      setTimeout(() => {
-        el.classList.add("reveal--in");
-      }, delay);
+  if (!("IntersectionObserver" in window)) {
+    // Just show everything immediately to avoid any rendering bugs.
+    revealAllNow();
+  } 
+  else {
+    // Normal behavior for other browsers
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
 
-      observer.unobserve(el);
-    });
-  }, { threshold: 0.15 });
+          const el = entry.target;
+          const delay = parseFloat(el.getAttribute("data-reveal-delay") || "0");
 
-  elements.forEach((el) => observer.observe(el));
+          setTimeout(() => {
+            el.classList.add("reveal--in");
+          }, delay);
+
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+  }
 
   // ---- HERO PHONE (homepage) ----
   const heroPhone = document.querySelector("#hero-phone");
@@ -46,6 +67,15 @@ document.addEventListener("DOMContentLoaded", () => {
       heroPhone.removeAttribute("href");
     }
   }
+
+  // Extra tiny Safari repaint nudge (harmless elsewhere)
+  requestAnimationFrame(() => {
+    document.body.style.webkitTransform = "translateZ(0)";
+    requestAnimationFrame(() => {
+      document.body.style.webkitTransform = "";
+    });
+  });
 });
 
+// Start Alpine
 window.Alpine.start();

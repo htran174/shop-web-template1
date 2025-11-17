@@ -39,7 +39,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
     filter: none;
   }
   .btn-outline-gold {
-    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm 
+    @apply inline-flex items-center justify-center rounded-md px-2 py-1 text-sm 
           font-medium transition border;
     border: 1px solid var(--gold);
     color: var(--color-title);
@@ -249,22 +249,27 @@ html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
   
 }
 @layer components {
-  @keyframes fadeInSoft { to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeInSoft { 
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    } 
+  }
 
-  /* Hidden baseline */
+  /* Hidden baseline (for browsers where JS works) */
   [data-reveal], .reveal {
-    opacity: 0;
+    opacity: 0;                /* fully hidden */
     transform: translateY(10px);
     will-change: opacity, transform;
     backface-visibility: hidden;
   }
 
-  /* Shown after JS toggles */
+  /* Shown after JS toggles this class */
   .reveal--in, .is-revealed {
     animation: fadeInSoft 700ms cubic-bezier(.22,.61,.36,1) forwards;
   }
 
-  /* FAIL-SAFE: if JS doesn't run, don't hide content */
+  /* FAIL-SAFE: if JS *never* runs, don't hide content */
   html:not(.has-reveal-js) [data-reveal],
   html:not(.has-reveal-js) .reveal {
     opacity: 1 !important;
@@ -273,7 +278,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    [data-reveal], .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
+    [data-reveal], .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
   }
 }
 

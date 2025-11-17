@@ -23,6 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
     phoneEl.textContent = BIZ.phone || "";
   }
 
+  // BOOK NOW Button (from BIZ.socials.Facebook)
+  const bookBtn = $("#biz-book");
+  if (bookBtn && BIZ.socials?.Facebook) {
+    bookBtn.href = BIZ.socials.Facebook;
+  }
+
   // Hours
   const hoursEl = $("#biz-hours");
   if (hoursEl && Array.isArray(BIZ.hours)) {

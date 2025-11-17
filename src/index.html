@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/assets/app.css">
 
   <!-- Alpine + site JS -->
-  <script defer src="/assets/alpine.min.js"></script>
+  <script src="/assets/alpine.min.js" defer onload="window.Alpine.start()"></script>
   <script type="module" defer src="/assets/js/main.js"></script>
 </head>
 <body class="min-h-screen">
@@ -47,7 +47,7 @@
 
   <!-- Centered text -->
   <div class="relative z-10 h-full flex items-center justify-center text-center px-6">
-    <div data-reveal class="reveal">
+    <div>
       <h1 class="text-4xl md:text-6xl font-semibold tracking-wide" style="color: var(--white);">
         Diva Nails & Spa
       </h1>
@@ -60,7 +60,10 @@
         ></a>
       </p>
       <div class="mt-6">
-        <a href="/#services" class="btn btn-gold">Our Services</a>
+        <a href="/contact.html" class="btn btn-gold">Book Now</a>
+      </div>
+      <div class="mt-4">
+        <a href="/#services" class="btn btn-outline-gold text-[0.7rem]">Our Services</a>
       </div>
     </div>
   </div>

@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/assets/fonts.css">
 
   <!-- Alpine + site JS -->
-  <script defer src="/assets/alpine.min.js"></script>
+  <script src="/assets/alpine.min.js" defer onload="window.Alpine.start()"></script>
   <script type="module" defer src="/assets/js/main.js"></script>
 
   <!-- Contact page data binding -->
@@ -34,6 +34,16 @@
     <p class="mt-5 text-[17px] md:text-lg text-[#bbbbbb] tracking-[0.05em] max-w-2xl mx-auto" data-reveal>
       Relax, rejuvenate, and let us take care of the details.
     </p>
+    <!-- BOOK NOW BTN -->
+    <div class="mt-8" data-reveal>
+      <a
+        id="biz-book"
+        href="#"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-gold text-base md:text-lg px-6 py-3"> Book Now
+      </a>
+    </div>
   </section>
 
   <!-- MAIN: centered Contact & Hours card -->
