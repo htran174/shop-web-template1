@@ -18,10 +18,17 @@
   <!-- Sticky, auto-hide header (brand stays; goes solid black when open) -->
   <header
     x-ref="bar"
-    :class="[
-      hidden ? 'opacity-0 -translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0',
-      open ? 'bg-black' : 'bg-[color:var(--color-card-bg)]/85 backdrop-blur'
-    ]"
+    :class="{
+      /* hide only when scrolling down AND menu is closed */
+      'opacity-0 -translate-y-2 pointer-events-none': hidden && !open,
+
+      /* visible whenever not hidden OR whenever menu is open */
+      'opacity-100 translate-y-0 pointer-events-auto': !hidden || open,
+
+      /* solid black when menu open, translucent card bg when closed */
+      'bg-black': open,
+      'bg-[color:var(--color-card-bg)]/85 backdrop-blur': !open
+    }"
     class="fixed top-0 inset-x-0 z-50 transition-all duration-300
            border-b border-[color:var(--color-border)]"
   >
@@ -85,7 +92,7 @@
         <a href="/#services"     @click="open=false" class="hover:text-[color:var(--gold)] transition">Services</a>
         <a href="/handnail.html" @click="open=false" class="hover:text-[color:var(--gold)] transition">Nails</a>
         <a href="/pedicure.html" @click="open=false" class="hover:text-[color:var(--gold)] transition">Pedicure</a>
-        <a href="/wax.html"  @click="open=false" class="hover:text-[color:var(--gold)] transition">Wax</a>
+        <a href="/wax.html"      @click="open=false" class="hover:text-[color:var(--gold)] transition">Wax</a>
         <a href="/contact.html"  @click="open=false" class="hover:text-[color:var(--gold)] transition">Contact</a>
       </nav>
     </div>

@@ -44,6 +44,40 @@
     .addons { margin:.4rem 0 0 calc(1.75ch + .25rem); padding-left:0; list-style:none; }
     .addon-item .name, .addon-item .price { color:#cfcfcf; font-weight:500; }
     
+     /* Top-left accent */
+    .menu-wrap::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      left: -40px;
+      width: 220px;          /* tweak size */
+      height: 220px;
+      background-image: url("/assets/images/frames/leaf-outline.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.7;          /* soften it a bit */
+      pointer-events: none;
+      z-index: -1;
+      transform: rotate(45deg);
+    }
+
+    /* Bottom-right accent (mirrored) */
+    .menu-wrap::after {
+      content: "";
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 220px;
+      height: 220px;
+      background-image: url("/assets/images/frames/leaf-outline.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      transform: scaleX(-1) rotate(-45deg); /* mirror horizontally; remove if you don't like it */
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: -1;
+    }
+
     /* ===== MOBILE ===== */
     @media (max-width:640px){
 
@@ -112,6 +146,25 @@
         top:.15rem;
         font-size:.9rem;
         color:var(#cfcfcf);
+      }
+       /* MOBILE DECORATIVE LEAVES */
+      .menu-wrap::before {
+      display: none !important;
+    }
+
+    .menu-wrap::after {
+      bottom: -10px;
+      right: -10px;
+      width: 140px;
+      height: 140px;
+      transform: scaleX(-1) rotate(-45deg);
+    }
+
+
+      /* cut overflow from decro */
+      .menu-wrap {
+        overflow-x: hidden;
+        overflow-y: hidden; 
       }
     }
   </style>

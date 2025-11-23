@@ -1,4 +1,4 @@
-<footer class="footer mt-16 border-t border-[color:var(--color-border)] bg-[#111] text-[#d8d8d8]" x-data>
+<footer class="footer mt-16 border-t border-[color:var(--color-border)] bg-[#111] text-[#d8d8d8]">
   <!-- thin gold accent line -->
   <div class="h-[2px] w-full" style="background:var(--gold)"></div>
 
@@ -6,8 +6,6 @@
     <div class="max-w-5xl mx-auto text-center space-y-3 md:space-y-4">
 
       <!-- Brand • Address • Phone -->
-      <!-- Mobile: stacked & clean
-           Desktop: single line with dots between -->
       <div class="brand-line leading-relaxed text-sm md:text-base flex flex-col items-center gap-1 md:flex-row md:justify-center md:flex-wrap">
         <!-- Brand -->
         <a href="/index.html" class="font-semibold hover:opacity-80">
@@ -17,13 +15,14 @@
         <!-- separator only on md+ -->
         <span class="hidden md:inline mx-2 opacity-40">•</span>
 
-        <!-- Address: opens Google Maps (same map_link used on contact page) -->
+        <!-- Address: opens Google Maps -->
         <a
           class="opacity-80 hover:underline"
-          :href="$store.biz.map_link || '#'"
+          href="https://www.google.com/maps/search/?api=1&query=Diva%20Nails%20And%20Spa%2C%20Dickinson%20ND&query_place_id=ChIJZ-TaayIYJlMRg-On8UidoZc"
           target="_blank"
           rel="noopener"
-          x-text="$store.biz.address">
+        >
+          1785 1st Street W, Dickinson, ND 58601
         </a>
 
         <!-- separator only on md+ -->
@@ -32,82 +31,52 @@
         <!-- Phone: tap to call -->
         <a
           class="hover:opacity-100 opacity-80"
-          :href="$store.biz.phone_link ? `tel:${$store.biz.phone_link}` : '#'"
-          x-text="$store.biz.phone">
+          href="tel:+17017612828"
+        >
+          (701) 761-2828
         </a>
       </div>
 
       <!-- Hours -->
-      <!-- Mobile: 3 stacked lines
-           Desktop: single centered line with bullets -->
       <div class="hours-line tracking-wide text-xs md:text-sm">
-        <template x-if="$store.biz.hours?.length >= 3">
-          <div>
-            <!-- Mobile layout -->
-            <div class="flex flex-col items-center gap-1 md:hidden">
-              <span x-text="$store.biz.hours[0].label + ' ' + $store.biz.hours[0].value"></span>
-              <span x-text="$store.biz.hours[1].label + ' ' + $store.biz.hours[1].value"></span>
-              <span x-text="$store.biz.hours[2].label + ' ' + $store.biz.hours[2].value"></span>
-            </div>
+        <!-- Mobile layout -->
+        <div class="flex flex-col items-center gap-1 md:hidden">
+          <span>Mon–Fri 10:00 AM – 7:00 PM</span>
+          <span>Sat 10:00 AM – 7:00 PM</span>
+          <span>Sun 12:00 PM – 5:00 PM</span>
+        </div>
 
-            <!-- Desktop layout -->
-            <div class="hidden md:block">
-              <span x-text="$store.biz.hours[0].label + ' ' + $store.biz.hours[0].value"></span>
-              <span class="mx-2 opacity-40">•</span>
-              <span x-text="$store.biz.hours[1].label + ' ' + $store.biz.hours[1].value"></span>
-              <span class="mx-2 opacity-40">•</span>
-              <span x-text="$store.biz.hours[2].label + ' ' + $store.biz.hours[2].value"></span>
-            </div>
-          </div>
-        </template>
+        <!-- Desktop layout -->
+        <div class="hidden md:block">
+          <span>Mon–Fri 10:00 AM – 7:00 PM</span>
+          <span class="mx-2 opacity-40">•</span>
+          <span>Sat 10:00 AM – 7:00 PM</span>
+          <span class="mx-2 opacity-40">•</span>
+          <span>Sun 12:00 PM – 5:00 PM</span>
+        </div>
       </div>
-
 
       <!-- Socials -->
       <div class="flex items-center justify-center gap-6 pt-2">
-        <!-- Instagram -->
-        <template x-if="$store.biz.socials?.Instagram">
-          <a :href="$store.biz.socials.Instagram" target="_blank" rel="noopener"
-            class="social-link" aria-label="Instagram">
-            <svg class="h-5 w-5 text-[var(--gold)]" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-              <circle cx="12" cy="12" r="3.5"></circle>
-              <circle cx="17.5" cy="6.5" r="1"></circle>
-            </svg>
-            <span class="hidden sm:inline">Instagram</span>
-          </a>
-        </template>
-
         <!-- Facebook -->
-        <template x-if="$store.biz.socials?.Facebook">
-          <a :href="$store.biz.socials.Facebook" target="_blank" rel="noopener"
-            class="social-link" aria-label="Facebook">
-            <svg class="h-5 w-5 text-[var(--gold)]" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.5">
-              <path d="M14 9h3V6h-3a3 3 0 00-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9a1 1 0 011-1z"></path>
-            </svg>
-            <span class="hidden sm:inline">Facebook</span>
-          </a>
-        </template>
-
-        <!-- TikTok -->
-        <template x-if="$store.biz.socials?.TikTok">
-          <a :href="$store.biz.socials.TikTok" target="_blank" rel="noopener"
-            class="social-link" aria-label="TikTok">
-            <svg class="h-5 w-5 text-[var(--gold)]" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.5">
-              <path d="M14 4v7.5a4.5 4.5 0 11-3.6-4.41"></path>
-              <path d="M14 4c1.1 1.9 3 3.3 5 3.6"></path>
-            </svg>
-            <span class="hidden sm:inline">TikTok</span>
-          </a>
-        </template>
+        <a
+          href="https://www.facebook.com/divanailsandspand/"
+          target="_blank"
+          rel="noopener"
+          class="social-link"
+          aria-label="Facebook"
+        >
+          <svg class="h-5 w-5 text-[var(--gold)]" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5">
+            <path d="M14 9h3V6h-3a3 3 0 00-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9a1 1 0 011-1z"></path>
+          </svg>
+          <span class="hidden sm:inline">Facebook</span>
+        </a>
       </div>
 
       <!-- Legal -->
       <div class="legal-line pt-2 text-xs md:text-sm">
-        © <span x-text="new Date().getFullYear()"></span> Diva Nails — All rights reserved.
+        © 2025 Diva Nails — All rights reserved.
       </div>
     </div>
   </div>
