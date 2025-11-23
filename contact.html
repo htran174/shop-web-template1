@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bus — Contact</title>
+
+  <!-- Theme + site CSS -->
+  <link rel="stylesheet" href="/assets/themes/dark.css" id="theme-css">
+  <link rel="stylesheet" href="/assets/app.css">
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="/assets/fonts.css">
+
+  <!-- Alpine + site JS -->
+  <script src="/assets/alpine.min.js" defer onload="window.Alpine.start()"></script>
+  <script type="module" defer src="/assets/js/main.js"></script>
+
+  <!-- Contact page data binding -->
+  <script type="module" defer src="/assets/js/contact.js"></script>
+</head>
+<body class="min-h-screen bg-[#0d0d0d] text-[#f5f5f5]">
+  <!-- Shared header -->
+  <div x-data x-init="fetch('/partials/header.html')
+                        .then(r => r.text())
+                        .then(html => { $el.outerHTML = html })"></div>
+
+  <!-- HERO -->
+  <section class="px-6 md:px-10  pt-0 pb-20 py-10 md:py-10 text-center">
+    <h1 class="text-5xl md:text-6xl font-semibold leading-tight font-[var(--font-h)]" data-reveal>
+      Book Your Visit
+    </h1>
+    <div class="mx-auto mt-4 h-px w-24 contact-gold-underline" data-reveal></div>
+    <p class="mt-5 text-[17px] md:text-lg text-[#bbbbbb] tracking-[0.05em] max-w-2xl mx-auto" data-reveal>
+      Relax, rejuvenate, and let us take care of the details.
+    </p>
+    <!-- BOOK NOW BTN -->
+    <div class="mt-8" data-reveal>
+      <a
+        id="biz-book"
+        href="#"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-gold text-base md:text-lg px-6 py-3"> Book Now
+      </a>
+    </div>
+  </section>
+
+  <!-- MAIN: centered Contact & Hours card -->
+<section class="px-6 md:px-10 pt-0 pb-10">
+  <div class="max-w-3xl mx-auto">
+    <aside class="relative rounded-2xl p-8 md:p-10 bg-[#121212] ring-1 ring-white/10 shadow-[0_4px_40px_rgba(0,0,0,0.4)]" data-reveal>
+
+      <!-- small gold label -->
+      <div class="text-sm tracking-[0.08em] text-[#d4af37] font-[var(--font-h)]" id="biz-name">Diva Nails</div>
+
+      <div class="mt-1 flex items-end justify-between gap-6">
+        <h2 class="text-3xl md:text-4xl font-[var(--font-h)]">Contact &amp; Hours</h2>
+      </div>
+
+      <div class="mt-8 grid gap-6">
+        <!-- Address -->
+        <div class="flex items-start gap-3">
+          <svg class="h-5 w-5 text-[#d4af37] mt-0.5" viewBox="0 0 24 24" fill="none">
+            <path d="M12 22s7-5.33 7-12a7 7 0 10-14 0c0 6.67 7 12 7 12z" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <a
+            id="biz-address"
+            href="#"
+            class="hover:underline text-[#f5f5f5]"
+            target="_blank"
+            rel="noopener"
+          ></a>
+        </div>
+
+        <!-- Phone -->
+        <div class="flex items-center gap-3">
+          <svg class="h-5 w-5 text-[#d4af37]" viewBox="0 0 24 24" fill="none">
+            <path d="M4 5c0-1.1.9-2 2-2h2l2 4-2 1c1 2.5 3.5 5 6 6l1-2 4 2v2a2 2 0 01-2 2c-8 0-13-5-13-13z" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <a id="biz-phone" href="#" class="hover:underline text-[#f5f5f5]"></a>
+        </div>
+
+        <!-- Hours -->
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <svg class="h-5 w-5 text-[#d4af37]" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span class="text-[#aaaaaa]">Hours</span>
+          </div>
+          <ul id="biz-hours" class="space-y-1 text-sm"></ul>
+        </div>
+
+        <!-- Socials -->
+        <div class="pt-2">
+          <div class="text-[#aaaaaa] mb-2">Follow Us</div>
+          <div id="biz-socials" class="flex gap-5"></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+  <!-- Shared footer -->
+  <div x-data x-init="fetch('/partials/footer.html')
+                        .then(r=>r.text())
+                        .then(h=>{$el.outerHTML = h})"></div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+:root{
+  /* Core palette */
+  --bg: #0B0B0C;          /* page background */
+  --surface: #121214;     /* cards/header */
+  --white: #F5F4EF;       /* warm white */
+  --muted: #B3B0A6;       /* secondary text */
+  --gold: #D4B47A;        /* soft gold */
+  --radius: 6px;
+
+  /* Semantic roles used by the site */
+  --color-page-bg: var(--bg);
+  --color-card-bg: var(--surface);
+  --color-title: var(--white);        /* headings = white */
+  --color-body: var(--white);         /* body text = white */
+  --color-muted: var(--muted);        /* secondary = muted */
+  --color-link: var(--gold);          /* links = gold */
+  --color-border: rgba(255,255,255,.10);
+
+  /* Buttons */
+  --color-cta-bg: var(--gold);        /* primary button = gold */
+  --color-cta-fg: #0B0B0C;            /* text on gold */
+  --color-cta-alt-bg: var(--white);   /* alt = white */
+  --color-cta-alt-fg: #0B0B0C;        /* text on white */
+
+  /* Warm Boutique section tokens */
+  --services-band-bg: #121112;
+  --services-card-bg: #191717;
+  --services-gold-soft: #CDBB7A;
+  --services-text: #F5F4EF;
+  --services-muted: #B8B5AA;
+  --services-shadow: 0 2px 10px rgba(0,0,0,0.35);
+
+  --text: #e8e8e8;          /* default body copy */
+  --services-text-strong: #f3f3f3; /* headings/prices on dark */
+}

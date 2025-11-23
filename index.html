@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bus — Home</title>
+
+  <!-- Theme first -->
+  <link rel="stylesheet" href="/assets/themes/dark.css" id="theme-css">
+  <link rel="stylesheet" href="/assets/app.css">
+
+  <!-- Alpine + site JS -->
+  <script src="/assets/alpine.min.js" defer onload="window.Alpine.start()"></script>
+  <script type="module" defer src="/assets/js/main.js"></script>
+</head>
+<body class="min-h-screen">
+
+  <!-- Loads the shared header partial -->
+<!-- Load the shared header -->
+  <div x-data x-init="fetch('/partials/header.html')
+                        .then(r => r.text())
+                        .then(html => { $el.outerHTML = html })">
+  </div>
+
+ <!-- HERO — Cross-fade with pill controls -->
+<section id="hero"
+  class="relative h-[70vh] md:h-[85vh] overflow-hidden pb-12 md:pb-16 bg-black"
+  x-data="heroSlider()"
+  x-init="init()"
+  @mouseenter="pause()" @mouseleave="resume()">
+
+  <!-- Slides -->
+  <template x-for="(img, i) in slides" :key="img.src">
+    <img
+      :src="img.src"
+      :alt="img.alt"
+      class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out"
+      :class="current === i ? 'opacity-100' : 'opacity-0'"
+      :loading="i === 0 ? 'eager' : 'lazy'"
+      decoding="async"
+      fetchpriority="high"
+    >
+  </template>
+
+  <!-- Dark gradient overlay to keep text readable -->
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+
+  <!-- Centered text -->
+  <div class="relative z-10 h-full flex items-center justify-center text-center px-6">
+    <div>
+      <h1 class="text-4xl md:text-6xl font-semibold tracking-wide" style="color: var(--white);">
+        Bus-name
+      </h1>
+      <p class="mt-4 text-lg md:text-xl">
+        <a
+          id="hero-phone"
+          href="#"
+          class="hover:underline"
+          style="color: var(--white);"
+        ></a>
+      </p>
+      <div class="mt-6">
+        <a href="/contact.html" class="btn btn-gold">Book Now</a>
+      </div>
+      <div class="mt-4">
+        <a href="/#services" class="btn btn-outline-gold text-[0.7rem]">Our Services</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pills controls -->
+  <div class="absolute bottom-3 left-0 right-0 z-10 flex items-center justify-center gap-2 px-4">
+    <template x-for="(img, i) in slides" :key="`pill-${i}`">
+      <button
+        class="h-2.5 md:h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50"
+        :class="current === i ? 'w-8 md:w-10 bg-white/90' : 'w-4 md:w-5 bg-white/40 hover:bg-white/60'"
+        @click="go(i)"
+        :aria-label="`Show slide ${i+1}`"
+      ></button>
+    </template>
+  </div>
+
+  <!-- Slider -->
+  <script>
+    function heroSlider() {
+      return {
+        // images (use your placeholders; change or add easily)
+        slides: [
+          { src: '/assets/images/img1.jpg',      alt: 'Salon nails — 1' },
+          { src: '/assets/images/img2.jpg',      alt: 'Salon nails — 2' },
+          { src: '/assets/images/img3.jpg',      alt: 'Salon nails — 3' },
+          { src: '/assets/images/img4.jpg',      alt: 'Salon nails — 4' },
+          { src: '/assets/images/shop.jpg',      alt: 'Salon nails — 5' },
+        ],
+        current: 0,
+        intervalMs: 8000,       // ~6s per slide (luxury pace)
+        _timer: null,
+        init() {
+          // Respect prefers-reduced-motion: disable auto-advance
+          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (!reduce) this._start();
+        },
+        _start() {
+          this._timer = setInterval(() => this.next(), this.intervalMs);
+        },
+        pause() {
+          if (this._timer) { clearInterval(this._timer); this._timer = null; }
+        },
+        resume() {
+          if (!this._timer) this._start();
+        },
+        next() {
+          this.current = (this.current + 1) % this.slides.length; // infinite loop
+        },
+        go(i) {
+          this.current = i;
+          // soft reset autoplay so it doesn’t immediately jump
+          this.pause();
+          this.resume();
+        }
+      }
+    }
+  </script>
+</section>
+
+<!-- Black spacer between hero and services -->
+<div class="bg-black h-12 md:h-20 w-full relative z-[5]"></div>
+
+
+  <!-- Services highlight -->
+ <section class="services-band anchor-offset full-bleed mt-12 md:mt-16" data-reveal>
+  <h2 class="services-heading">Our Services</h2>
+  <div id="services" class="anchor-hit"></div>
+  <div class="mt-10 grid gap-8 md:grid-cols-4 max-w-6xl mx-auto px-6 md:px-10">
+    <!-- Acrylic -->
+    <div class="service-card" data-reveal data-reveal-delay="150">
+      <a class="stretched-link" href="/handnail.html#hand-acrylic" aria-label="Open Acrylic menu"></a>
+      <h3 class="service-title">Acrylic & Dip</h3>
+      <p class="service-desc">Clean structure crafted for lasting beauty.</p>
+      <a href="/handnail.html#hand-acrylic" class="btn btn-gold">View Menu</a>
+    </div>
+
+    <!-- Gel Manicure -->
+    <div class="service-card" data-reveal data-reveal-delay="150">
+      <a class="stretched-link" href="/handnail.html#hand-gel" aria-label="Open Acrylic menu"></a>
+      <h3 class="service-title">Gel Manicure</h3>
+      <p class="service-desc">Luxe shine and smooth, long-lasting wear.</p>
+      <a href="/handnail.html#hand-gel" class="btn btn-gold">View Menu</a>
+    </div>
+
+    <!-- Pedicure -->
+    <div class="service-card" data-reveal data-reveal-delay="150">
+      <a class="stretched-link" href="/pedicure.html" aria-label="Open Acrylic menu"></a>
+      <h3 class="service-title">Pedicure</h3>
+      <p class="service-desc">Luxurious care designed for total relaxation.</p>
+      <a href="/pedicure.html" class="btn btn-gold">View Menu</a>
+    </div>
+     <!-- Wax -->
+    <div class="service-card" data-reveal data-reveal-delay="150">
+      <a class="stretched-link" href="/wax.html" aria-label="Open Acrylic menu"></a>
+      <h3 class="service-title">Wax</h3>
+      <p class="service-desc">Smooth, gentle care with a refined touch.</p>
+      <a href="/wax.html" class="btn btn-gold">View Menu</a>
+    </div>
+  </div>
+
+</section>
+
+
+  <!-- Load shared footer -->
+<div x-data x-init="fetch('/partials/footer.html')
+                      .then(r=>r.text())
+                      .then(h=>{$el.outerHTML = h})"></div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!-- Header + Mobile Dropdown (header turns solid black; toggle via header button) -->
+<div
+  x-data="{
+    hidden:false, lastY:0, open:false,
+    handle(){
+      const y = window.scrollY || 0;
+      const goingDown = y > this.lastY && y > 10;
+      this.hidden = goingDown;
+      this.lastY = y;
+    }
+  }"
+  x-init="
+    window.addEventListener('scroll', () => handle(), { passive:true });
+    window.addEventListener('mousemove', e => { if (e.clientY < 40) hidden=false; });
+    $watch('open', v => document.body.classList.toggle('overflow-hidden', v));
+  "
+>
+  <!-- Sticky, auto-hide header (brand stays; goes solid black when open) -->
+  <header
+    x-ref="bar"
+    :class="{
+      /* hide only when scrolling down AND menu is closed */
+      'opacity-0 -translate-y-2 pointer-events-none': hidden && !open,
+
+      /* visible whenever not hidden OR whenever menu is open */
+      'opacity-100 translate-y-0 pointer-events-auto': !hidden || open,
+
+      /* solid black when menu open, translucent card bg when closed */
+      'bg-black': open,
+      'bg-[color:var(--color-card-bg)]/85 backdrop-blur': !open
+    }"
+    class="fixed top-0 inset-x-0 z-50 transition-all duration-300
+           border-b border-[color:var(--color-border)]"
+  >
+    <div class="mx-auto max-w-6xl px-6 md:px-10 py-4 flex items-center justify-between">
+      <!-- Brand -->
+      <a href="/index.html" class="text-2xl tracking-wide hover:opacity-80"
+         style="font-family:'Cormorant Garamond', serif;">
+        <span style="color:var(--gold)">Diva</span> Nails
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex gap-6" style="color:var(--gold)">
+        <a href="/index.html" class="hover:opacity-80">Home</a>
+        <a href="/#services" class="hover:opacity-80">Services</a>
+        <a href="/handnail.html" class="hover:opacity-80">Nails</a>
+        <a href="/pedicure.html" class="hover:opacity-80">Pedicure</a>
+        <a href="/wax.html" class="hover:opacity-80">Wax</a>
+        <a href="/contact.html" class="hover:opacity-80">Contact</a>
+      </nav>
+
+      <!-- Mobile menu toggle (same button opens & closes; icon swaps) -->
+      <button
+        @click="open = !open"
+        class="md:hidden text-[color:var(--gold)] focus:outline-none hover:opacity-80"
+        aria-label="Toggle menu"
+        :aria-expanded="open.toString()"
+      >
+        <!-- Hamburger -->
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <!-- X -->
+        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Spacer so content isn’t hidden behind the fixed header -->
+  <div class="h-16"></div>
+
+  <!-- Mobile dropdown panel (starts below header; luxury charcoal; no internal X) -->
+  <div
+    x-show="open"
+    x-transition.opacity.duration.150ms
+    x-cloak
+    class="fixed inset-x-0 z-[60]"
+    :style="{ top: ($refs.bar?.offsetHeight || 64) + 'px' }"
+    role="dialog" aria-modal="true" aria-label="Mobile navigation"
+  >
+    <div
+      class="mx-auto w-full bg-[#111213] text-white rounded-b-2xl shadow-2xl
+             border-b border-neutral-800"
+    >
+      <!-- Link stack -->
+      <nav class="px-8 py-6 flex flex-col items-center gap-10 text-2xl">
+        <a href="/index.html"    @click="open=false" class="hover:text-[color:var(--gold)] transition">Home</a>
+        <a href="/#services"     @click="open=false" class="hover:text-[color:var(--gold)] transition">Services</a>
+        <a href="/handnail.html" @click="open=false" class="hover:text-[color:var(--gold)] transition">Nails</a>
+        <a href="/pedicure.html" @click="open=false" class="hover:text-[color:var(--gold)] transition">Pedicure</a>
+        <a href="/wax.html"      @click="open=false" class="hover:text-[color:var(--gold)] transition">Wax</a>
+        <a href="/contact.html"  @click="open=false" class="hover:text-[color:var(--gold)] transition">Contact</a>
+      </nav>
+    </div>
+  </div>
+</div>
