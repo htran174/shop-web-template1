@@ -35,7 +35,7 @@
 
   <!-- Loads the shared header partial -->
 <!-- Load the shared header -->
-  <div x-data x-init="fetch('/partials/header.html')
+  <div x-data x-init="fetch('/partials/header-light.html')
                         .then(r => r.text())
                         .then(html => { $el.outerHTML = html })">
   </div>
@@ -45,7 +45,7 @@
     <div class="grid md:grid-cols-2 gap-10 items-center">
       <!-- Left: headline + copy + CTAs -->
       <div>
-        <h1 class="text-5xl md:text-7xl font-semibold leading-tight light-heading" data-reveal>
+        <h1 class="text-5xl md:text-7xl font-semibold leading-tight light-heading">
           <span style="color:var(--gold)">Elegant</span> Nails
           <span class="block">
             <span style="color:var(--gold)">Luxury</span> Pedicure</span>
@@ -61,44 +61,56 @@
         </div>
       </div>
 
-      <!-- Right: image (soft, faded) — now a cross-fade gallery -->
-<div class="relative h-[360px] md:h-[480px] rounded-[var(--radius)] overflow-hidden border border-[color:var(--color-border)]" data-reveal>
-  <style>
-    /* Smooth cross-fade: fade in, hold, fade out (peaks at ~0.6 to match your old .opacity-60) */
-    @keyframes sideHeroCrossfade {
-      0%   { opacity: 0 }
-      10%  { opacity: .6 }   /* fade in */
-      30%  { opacity: .6 }   /* hold */
-      40%  { opacity: 0 }    /* fade out */
-      100% { opacity: 0 }
-    }
-    .side-hero-slide {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      animation: sideHeroCrossfade var(--side-hero-duration, 30s) infinite ease-in-out;
-      will-change: opacity; backface-visibility: hidden;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .side-hero-slide { animation: none !important; opacity: 0 }
-      .side-hero-slide:first-child { opacity: .6 } /* show one image without motion */
-    }
-  </style>
+      <!-- Right: image (soft, faded) — cross-fade gallery -->
+      <div class="relative h-[360px] md:h-[480px] rounded-[var(--radius)] overflow-hidden border border-[color:var(--color-border)]" data-reveal>
+        <style>
+          /* Clean cross-fade: only one image fully visible at a time */
+          @keyframes sideHeroCrossfade {
+            0%   { opacity: 0; }
+            8%   { opacity: 1; }   /* fade in to fully visible */
+            30%  { opacity: 1; }   /* hold fully visible */
+            38%  { opacity: 0; }   /* fade out completely */
+            100% { opacity: 0; }
+          }
 
-    <!-- total cycle time: 5 slides × ~6s = 30s; adjust delays if you add/remove images -->
-    <div class="[--side-hero-duration:30s]">
-      <img src="/assets/images/img1.jpg" alt="Diva Nails gallery 1"
-          class="side-hero-slide" style="animation-delay:0s" fetchpriority="high" decoding="async">
-      <img src="/assets/images/img2.jpg" alt="Diva Nails gallery 2"
-          class="side-hero-slide" style="animation-delay:6s" loading="lazy" decoding="async">
-      <img src="/assets/images/img3.jpg" alt="Diva Nails gallery 3"
-          class="side-hero-slide" style="animation-delay:12s" loading="lazy" decoding="async">
-      <img src="/assets/images/img4.jpg" alt="Diva Nails gallery 4"
-          class="side-hero-slide" style="animation-delay:18s" loading="lazy" decoding="async">
-      <img src="/assets/images/shop.jpg" alt="Diva Nails gallery 5"
-          class="side-hero-slide" style="animation-delay:24s" loading="lazy" decoding="async">
-    </div>
+          .side-hero-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: sideHeroCrossfade var(--side-hero-duration, 30s) infinite ease-in-out;
+            will-change: opacity;
+            backface-visibility: hidden;
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .side-hero-slide {
+              animation: none !important;
+              opacity: 0;
+            }
+            .side-hero-slide:first-child {
+              opacity: 1; /* show one image without motion */
+            }
+          }
+        </style>
+
+        <!-- total cycle time: 5 slides × ~6s = 30s; adjust delays if you add/remove images -->
+        <div class="[--side-hero-duration:30s]">
+          <img src="/assets/images/img1.jpg" alt="Diva Nails gallery 1"
+               class="side-hero-slide" style="animation-delay:0s" fetchpriority="high" decoding="async">
+          <img src="/assets/images/img2.jpg" alt="Diva Nails gallery 2"
+               class="side-hero-slide" style="animation-delay:6s" loading="lazy" decoding="async">
+          <img src="/assets/images/img3.jpg" alt="Diva Nails gallery 3"
+               class="side-hero-slide" style="animation-delay:12s" loading="lazy" decoding="async">
+          <img src="/assets/images/img4.jpg" alt="Diva Nails gallery 4"
+               class="side-hero-slide" style="animation-delay:18s" loading="lazy" decoding="async">
+          <img src="/assets/images/shop.jpg" alt="Diva Nails gallery 5"
+               class="side-hero-slide" style="animation-delay:24s" loading="lazy" decoding="async">
+        </div>
+      </div>
+
   </section>
 
   <!-- Services highlight -->

@@ -17,7 +17,7 @@
 
   <!-- Loads the shared header partial -->
 <!-- Load the shared header -->
-  <div x-data x-init="fetch('/partials/header.html')
+  <div x-data x-init="fetch('/partials/header-dark.html')
                         .then(r => r.text())
                         .then(html => { $el.outerHTML = html })">
   </div>
@@ -60,10 +60,10 @@
         ></a>
       </p>
       <div class="mt-6">
-        <a href="/contact.html" class="btn btn-gold">Book Now</a>
+        <a href="/contact-dark.html" class="btn btn-gold">Book Now</a>
       </div>
       <div class="mt-4">
-        <a href="/#services" class="btn btn-outline-gold text-[0.7rem]">Our Services</a>
+        <a href="/index-dark.html#services" class="btn btn-outline-gold text-[0.7rem]">Our Services</a>
       </div>
     </div>
   </div>
@@ -134,7 +134,7 @@
   <div class="mt-10 grid gap-8 md:grid-cols-4 max-w-6xl mx-auto px-6 md:px-10">
     <!-- Acrylic -->
     <div class="service-card" data-reveal data-reveal-delay="150">
-      <a class="stretched-link" href="/handnail.html#hand-acrylic" aria-label="Open Acrylic menu"></a>
+      <a class="stretched-link" href="/handnail-dark.html#hand-acrylic" aria-label="Open Acrylic menu"></a>
       <h3 class="service-title">Acrylic & Dip</h3>
       <p class="service-desc">Clean structure crafted for lasting beauty.</p>
       <a href="/handnail.html#hand-acrylic" class="btn btn-gold">View Menu</a>
@@ -142,25 +142,25 @@
 
     <!-- Gel Manicure -->
     <div class="service-card" data-reveal data-reveal-delay="150">
-      <a class="stretched-link" href="/handnail.html#hand-gel" aria-label="Open Acrylic menu"></a>
+      <a class="stretched-link" href="/handnail-dark.html#hand-gel" aria-label="Open Acrylic menu"></a>
       <h3 class="service-title">Gel Manicure</h3>
       <p class="service-desc">Luxe shine and smooth, long-lasting wear.</p>
-      <a href="/handnail.html#hand-gel" class="btn btn-gold">View Menu</a>
+      <a href="/handnail-dark.html#hand-gel" class="btn btn-gold">View Menu</a>
     </div>
 
     <!-- Pedicure -->
     <div class="service-card" data-reveal data-reveal-delay="150">
-      <a class="stretched-link" href="/pedicure.html" aria-label="Open Acrylic menu"></a>
+      <a class="stretched-link" href="/pedicure-dark.html" aria-label="Open Acrylic menu"></a>
       <h3 class="service-title">Pedicure</h3>
       <p class="service-desc">Luxurious care designed for total relaxation.</p>
-      <a href="/pedicure.html" class="btn btn-gold">View Menu</a>
+      <a href="/pedicure-dark.html" class="btn btn-gold">View Menu</a>
     </div>
      <!-- Wax -->
     <div class="service-card" data-reveal data-reveal-delay="150">
-      <a class="stretched-link" href="/wax.html" aria-label="Open Acrylic menu"></a>
+      <a class="stretched-link" href="/wax-dark.html" aria-label="Open Acrylic menu"></a>
       <h3 class="service-title">Wax</h3>
       <p class="service-desc">Smooth, gentle care with a refined touch.</p>
-      <a href="/wax.html" class="btn btn-gold">View Menu</a>
+      <a href="/wax-dark.html" class="btn btn-gold">View Menu</a>
     </div>
   </div>
 
