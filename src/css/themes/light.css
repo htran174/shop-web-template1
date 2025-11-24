@@ -1,0 +1,52 @@
+:root{
+  /* Core palette – light background, dark text, same soft gold */
+  --bg: #f5ecdd;          /* page background (warm cream) #F7F3EA*/
+  --surface: #FFFFFF;     /* cards/header */
+  --white: #161311;       /* “white” token used for text in dark theme – now near-black */
+  --muted: #7D7467;       /* secondary text */
+  --gold: #D4B47A;        /* soft gold (same as dark theme) */
+  --lightgold: #E4C892;
+  --radius: 6px;
+
+  /* Semantic roles used by the site */
+  --color-page-bg: var(--bg);
+  --color-card-bg: var(--surface);
+  --color-title: #1A1612;        /* headings = dark */
+  --color-body: #28221B;         /* body text = dark */
+  --color-muted: var(--muted);   /* secondary */
+  --color-link: var(--gold);     /* links = gold */
+  --color-border: rgba(0,0,0,.08);
+
+  /* Buttons */
+  --color-cta-bg: var(--gold);        /* primary button = gold */
+  --color-cta-fg: #1A1612;            /* text on gold */
+  --color-cta-alt-bg: #FFFFFF;        /* alt = white */
+  --color-cta-alt-fg: #1A1612;        /* text on white */
+
+  /* Services section tokens (lighter version of dark theme) */
+  --services-band-bg: #F2ECE2;
+  --services-card-bg: #E9D8C4;
+  --services-gold-soft: #CDBB7A;
+  --services-text: #2B2520;
+  --services-muted: #8B8276;
+  --services-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+  --text: #28221B;
+  --services-text-strong: #1E1812;
+}
+
+/* Override services band background for light theme */
+.services-band {
+  background: #F7F3EA !important; /* same cream tone as page #f5ecdd */
+  color: var(--muted);             /* softer text */
+}
+
+/* Make sure Our Services heading is visible */
+.services-band .services-heading {
+  color: #D4B47A !important; /* warm dark brown */
+}
+
+/* Optional: soften the gold underline */
+.services-band .services-heading::after {
+  background: var(--gold);
+}
