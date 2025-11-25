@@ -11,7 +11,7 @@ export const BIZ = {
     { label: "Sun",    value: "12:00 PM – 5:00 PM" },
   ],
   socials: {
-    //Instagram: "https://instagram.com/",
+    Instagram: "https://instagram.com/",
     Facebook:  "https://www.facebook.com",
     //TikTok:    "https://tiktok.com/"
   }

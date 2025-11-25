@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Business — Contact</title>
+
+  <!-- Theme + site CSS -->
+  <link rel="stylesheet" href="/assets/themes/light.css" id="theme-css">
+  <link rel="stylesheet" href="/assets/app.css">
+  <link rel="stylesheet" href="/assets/fonts.css">
+
+  <!-- Alpine + site JS -->
+  <script src="/assets/alpine.min.js" defer onload="window.Alpine.start()"></script>
+  <script type="module" defer src="/assets/js/main.js"></script>
+
+  <!-- Contact page data binding -->
+  <script type="module" defer src="/assets/js/contact.js"></script>
+</head>
+
+<body class="min-h-screen bg-[color:var(--bg)] text-[color:var(--text)]">
+  <!-- Shared header -->
+  <div x-data x-init="fetch('/partials/header-light.html')
+                        .then(r => r.text())
+                        .then(html => { $el.outerHTML = html })"></div>
+
+  <!-- HERO -->
+  <section class="px-6 md:px-10 pt-16 pb-14 text-center">
+    <h1
+      class="text-4xl md:text-6xl font-semibold leading-tight"
+      style="font-family: var(--font-h, 'Cormorant Garamond', serif); color: var(--color-title);"
+      data-reveal
+    >
+      Book Your Visit
+    </h1>
+
+    <!-- soft gold underline -->
+    <div
+      class="mx-auto mt-4 h-px w-24"
+      style="background: var(--gold); opacity: .55;"
+      data-reveal
+    ></div>
+
+    <p
+      class="mt-5 text-[17px] md:text-lg max-w-2xl mx-auto"
+      style="color: var(--color-muted);"
+      data-reveal
+    >
+      Relax, rejuvenate, and let us take care of the details.
+    </p>
+
+    <!-- BOOK NOW BTN -->
+    <div class="mt-8" data-reveal>
+      <a
+        id="biz-book"
+        href="#"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-gold text-base md:text-lg px-6 py-3"
+      >
+        Book Now
+      </a>
+    </div>
+  </section>
+
+  <!-- MAIN: centered Contact & Hours card -->
+  <section class="px-6 md:px-10 pb-16">
+    <div class="max-w-3xl mx-auto">
+      <aside
+        class="relative rounded-2xl p-8 md:p-10 shadow-[0_18px_45px_rgba(0,0,0,0.12)]"
+        style="background: var(--services-card-bg); border: 1px solid var(--color-border);"
+        data-reveal
+      >
+        <!-- small gold label -->
+        <div
+          id="biz-name"
+          class="text-sm tracking-[0.14em] uppercase"
+          style="color: var(--gold); font-family: var(--font-h, 'Cormorant Garamond', serif);"
+        >
+          Store Name
+        </div>
+
+        <div class="mt-1 flex items-end justify-between gap-6">
+          <h2
+            class="text-2xl md:text-3xl"
+            style="font-family: var(--font-h, 'Cormorant Garamond', serif); color: var(--color-title);"
+          >
+            Contact &amp; Hours
+          </h2>
+        </div>
+
+        <div class="mt-8 grid gap-6 text-[15px] leading-relaxed">
+          <!-- Address -->
+          <div class="flex items-start gap-3">
+            <svg class="h-5 w-5 mt-0.5" viewBox="0 0 24 24" fill="none"
+                 style="color: var(--gold);">
+              <path d="M12 22s7-5.33 7-12a7 7 0 10-14 0c0 6.67 7 12 7 12z"
+                    stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="12" cy="10" r="2.5"
+                      stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <a
+              id="biz-address"
+              href="#"
+              class="hover:underline"
+              style="color: var(--color-body);"
+              target="_blank"
+              rel="noopener"
+            ></a>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex items-center gap-3">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                 style="color: var(--gold);">
+              <path d="M4 5c0-1.1.9-2 2-2h2l2 4-2 1c1 2.5 3.5 5 6 6l1-2 4 2v2a2 2 0 01-2 2c-8 0-13-5-13-13z"
+                    stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <a
+              id="biz-phone"
+              href="#"
+              class="hover:underline"
+              style="color: var(--color-body);"
+            ></a>
+          </div>
+
+          <!-- Hours -->
+          <div class="mt-2">
+            <div class="flex items-center gap-3 mb-2">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                   style="color: var(--gold);">
+                <circle cx="12" cy="12" r="9"
+                        stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12 7v5l3 2"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <span class="hours-label style="color: var(--color-muted);">Hours</span>
+            </div>
+            <ul id="biz-hours" class="space-y-1 text-sm" style="color: var(--color-body);"></ul>
+          </div>
+
+          <!-- Socials -->
+          <div class="pt-2">
+            <div class="mb-2 text-sm" style="color: var(--color-muted);">
+              Follow Us
+            </div>
+            <div id="biz-socials" class="flex gap-5 items-center"></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Shared footer -->
+  <div x-data x-init="fetch('/partials/footer.html')
+                        .then(r=>r.text())
+                        .then(h=>{$el.outerHTML = h})"></div>
+</body>
+
+<style>
+  /* Fix hours text in light theme */
+  #biz-hours li {
+    color: var(--color-body) !important;
+  }
+
+  #biz-hours li span:first-child {
+    color: var(--color-body) !important;
+  }
+
+  /* Also fix the hours label (“Hours”) */
+  .hours-label {
+    color: var(--color-body) !important;
+  }
+</style>
+
+</html>
