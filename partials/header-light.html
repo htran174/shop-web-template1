@@ -26,8 +26,8 @@
       'opacity-100 translate-y-0 pointer-events-auto': !hidden || open,
 
       /* solid black when menu open, translucent card bg when closed */
-      'bg-black': open,
-      'bg-[color:var(--color-card-bg)]/85 backdrop-blur': !open
+      'bg-[color:var(--bg)]': open,
+      'bg-[color:var(services-card-bg)]/85 backdrop-blur': !open
     }"
     class="fixed top-0 inset-x-0 z-50 transition-all duration-300
            border-b border-[color:var(--color-border)]"
@@ -73,7 +73,7 @@
   <!-- Spacer so content isn’t hidden behind the fixed header -->
   <div class="h-16"></div>
 
-  <!-- Mobile dropdown panel (starts below header; luxury charcoal; no internal X) -->
+  <!-- Mobile dropdown panel (starts below header; luxury background; no internal X) -->
   <div
     x-show="open"
     x-transition.opacity.duration.150ms
@@ -83,7 +83,7 @@
     role="dialog" aria-modal="true" aria-label="Mobile navigation"
   >
     <div
-      class="mx-auto w-full bg-[#111213] text-white rounded-b-2xl shadow-2xl
+      class="mx-auto w-full bg-[color:var(--bg)] text-white rounded-b-2xl shadow-2xl
              border-b border-neutral-800"
     >
       <!-- Link stack -->
